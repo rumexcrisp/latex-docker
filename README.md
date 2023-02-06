@@ -1,6 +1,6 @@
 # latex-docker
 
-A Docker-based LaTeX distribution with support for BibLaTeX and PDFlatex.
+A Docker-based LaTeX distribution with support for BibLaTeX and PDFLatex.
 
 ## Prerequisites
 
