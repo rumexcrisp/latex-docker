@@ -1,5 +1,8 @@
 # latex-docker
 
+[![rumexcrisp/latex-docker](https://img.shields.io/badge/Docker%20Hub-rumexcrispp%2Flatex--docker-blue)](https://hub.docker.com/r/rumexcrispp/latex-docker)
+[![Build and publish](https://github.com/rumexcrisp/latex-docker/actions/workflows/build.yml/badge.svg)](https://github.com/rumexcrisp/latex-docker/actions/workflows/build.yml)
+
 A Docker-based LaTeX distribution with support for BibLaTeX and PDFLatex.
 
 ## Prerequisites
