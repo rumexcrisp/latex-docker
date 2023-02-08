@@ -34,9 +34,10 @@ jobs:
           context: ./docker
           file: ./docker/Dockerfile
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/latex-docker:dev
+          push: true
       
       - name: Update Docker Hub description
-        if: ${{ github.event_name == 'release' || (github.event_name == 'push' && github.ref == 'refs/heads/master') }}
+        if: ${{ github.event_name == 'release' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
         uses: peter-evans/dockerhub-description@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
