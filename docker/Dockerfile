@@ -11,3 +11,5 @@ RUN dnf install -y --setopt=install_weak_deps=False \
   pdf2svg \
   texlive-scheme-full \
   && dnf clean all
+
+RUN git clone -b main https://github.com/cmhughes/latexindent.pl /tmp/latexindent
