@@ -1,6 +1,6 @@
 {
     "name": "latex-docker",
-    "image" : "rumexcrispp/latex-docker:dev",
+    "image" : "rumexcrispp/latex-docker:latest",
 	"extensions": ["james-yu.latex-workshop"],
     "settings": {
         "files.eol": "\n",

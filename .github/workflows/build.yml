@@ -33,7 +33,7 @@ jobs:
         with:
           context: ./docker
           file: ./docker/Dockerfile
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/latex-docker:dev
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/latex-docker:latest
           push: true
       
       - name: Update Docker Hub description

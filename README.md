@@ -21,7 +21,7 @@ Specify your project name, the image to use ([`rumexcrispp/latex-docker`](https:
 
 ```json
   "name": "latex-docker",
-  "image" : "rumexcrispp/latex-docker:dev",
+  "image" : "rumexcrispp/latex-docker:latest",
   "extensions": ["james-yu.latex-workshop"]
 ```
 
