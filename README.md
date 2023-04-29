@@ -20,9 +20,15 @@ This docker is intended to use as a remote container. Create your custom latex p
 Specify your project name, the image to use ([`rumexcrispp/latex-docker`](https://hub.docker.com/r/rumexcrispp/latex-docker)) and the necessary extension. 
 
 ```json
+{
   "name": "latex-docker",
   "image" : "rumexcrispp/latex-docker:latest",
-  "extensions": ["james-yu.latex-workshop"]
+  "customizations": {
+      "vscode": {
+          "extensions": ["james-yu.latex-workshop"]
+      }
+  }
+}
 ```
 
 Open the VSCode command palette with <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd> and run the command `Dev Containers: Rebuild and Reopen in Container`. See following screenshot.
