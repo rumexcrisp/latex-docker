@@ -1,96 +1,114 @@
 {
     "name": "latex-docker",
-    "image" : "rumexcrispp/latex-docker:latest",
-	"extensions": ["james-yu.latex-workshop"],
-    "settings": {
-        "files.eol": "\n",
-        "latex-workshop.latex.clean.subfolder.enabled": true,
-        "latex-workshop.latex.autoClean.run": "onBuilt",
-        "editor.formatOnSave": false,
-        "files.associations": {
-            "*.tex": "latex"
-        },
-        "latex-workshop.latexindent.path": "/tmp/latexindent/latexindent.pl",
-        "latex-workshop.latexindent.args": [
-            "-c",
-            "%DIR%/",
-            "%TMPFILE%",
-            "-y=defaultIndent: '%INDENT%'"
-        ],
-        "latex-workshop.latex.recipe.default": "latexmk",
-        "latex-workshop.latex.recipes": [
-            {
-                "name": "latexmk",
-                "tools": [
-                    "latexmk",
-                    "compress"
-                ]
-            },
-            {
-                "name": "pdflatex, bibtex, pdflatex",
-                "tools": [
-                    "pdflatex",
-                    "bibtex",
-                    "pdflatex",
-                    "pdflatex",
-                    "compress"
-                ]
-            },
-            {
-                "name": "Compress with gs",
-                "tools": [
-                    "compress"
+    "image": "rumexcrispp/latex-docker:latest",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "james-yu.latex-workshop"
+            ],
+            "settings": {
+                "files.eol": "\n",
+                "latex-workshop.latex.clean.subfolder.enabled": true,
+                "latex-workshop.latex.autoClean.run": "onBuilt",
+                "editor.formatOnSave": false,
+                "files.associations": {
+                    "*.tex": "latex"
+                },
+                "latex-workshop.latexindent.path": "/tmp/latexindent/latexindent.pl",
+                "latex-workshop.latexindent.args": [
+                    "-c",
+                    "%DIR%/",
+                    "%TMPFILE%",
+                    "-y=defaultIndent: '%INDENT%'"
+                ],
+                "latex-workshop.latex.recipe.default": "lualatex",
+                "latex-workshop.latex.recipes": [
+                    {
+                        "name": "lualatex",
+                        "tools": [
+                            "lualatex",
+                            "compress"
+                        ]
+                    },
+                    {
+                        "name": "pdflatex, bibtex, pdflatex",
+                        "tools": [
+                            "pdflatex",
+                            "bibtex",
+                            "pdflatex",
+                            "pdflatex",
+                            "compress"
+                        ]
+                    },
+                    {
+                        "name": "Compress with gs",
+                        "tools": [
+                            "compress"
+                        ]
+                    }
+                ],
+                "latex-workshop.latex.tools": [
+                    {
+                        "name": "latexmk",
+                        "command": "latexmk",
+                        "args": [
+                            "-synctex=1",
+                            "-interaction=nonstopmode",
+                            "-file-line-error",
+                            "-pdf",
+                            "-outdir=%OUTDIR%",
+                            "%DOC%"
+                        ],
+                        "env": {}
+                    },
+                    {
+                        "name": "compress",
+                        "command": "gs",
+                        "args": [
+                            "-sDEVICE=pdfwrite",
+                            "-dCompatibilityLevel=1.5",
+                            "-dPDFSETTINGS=/printer",
+                            "-dNOPAUSE",
+                            "-dBATCH",
+                            "-sOutputFile=%DOC%_cmp.pdf",
+                            "%DOC%.pdf"
+                        ],
+                        "env": {}
+                    },
+                    {
+                        "name": "pdflatex",
+                        "command": "pdflatex",
+                        "args": [
+                            "--shell-escape",
+                            "-synctex=1",
+                            "-interaction=nonstopmode",
+                            "-file-line-error",
+                            "%DOC%"
+                        ],
+                        "env": {}
+                    },
+                    {
+                        "name": "lualatex",
+                        "command": "lualatex",
+                        "args": [
+                            "-synctex=1",
+                            "-interaction=nonstopmode",
+                            "-file-line-error",
+                            "-pdf",
+                            "%DOC%"
+                        ],
+                        "env": {}
+                    },
+                    {
+                        "name": "bibtex",
+                        "command": "bibtex",
+                        "args": [
+                            "%DOCFILE%"
+                        ],
+                        "env": {}
+                    }
                 ]
             }
-        ],
-        "latex-workshop.latex.tools": [
-            {
-                "name": "latexmk",
-                "command": "latexmk",
-                "args": [
-                    "-synctex=1",
-                    "-interaction=nonstopmode",
-                    "-file-line-error",
-                    "-pdf",
-                    "-outdir=%OUTDIR%",
-                    "%DOC%"
-                ],
-                "env": {}
-            },
-            {
-                "name": "compress",
-                "command": "gs",
-                "args": [
-                    "-sDEVICE=pdfwrite",
-                    "-dCompatibilityLevel=1.5",
-                    "-dPDFSETTINGS=/printer",
-                    "-dNOPAUSE",
-                    "-dBATCH",
-                    "-sOutputFile=%DOC%_cmp.pdf",
-                    "%DOC%.pdf"
-                ],
-                "env": {}
-            },
-            {
-                "name": "pdflatex",
-                "command": "pdflatex",
-                "args": [
-                    "--shell-escape",
-                    "-synctex=1",
-                    "-interaction=nonstopmode",
-                    "-file-line-error",
-                    "%DOC%"
-                ],
-                "env": {}
-            },
-            {
-                "name": "bibtex",
-                "command": "bibtex",
-                "args": [
-                    "%DOCFILE%"
-                ],
-                "env": {}
-            }
-        ]
+        }
     }
 }
