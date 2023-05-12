@@ -17,8 +17,6 @@ It is assumed you already have the following packages installed. They area avail
 
 This docker is intended to use as a remote container. Create your custom latex project folder and open in VSCode. Inside create a `.devcontainer` folder including a [`devcontainer.json`](.devcontainer/devcontainer.json) file.
 
-Specify your project name, the image to use ([`rumexcrispp/latex-docker`](https://hub.docker.com/r/rumexcrispp/latex-docker)) and the necessary extension. 
-
 ```json
 {
   "name": "latex-docker",
@@ -31,11 +29,17 @@ Specify your project name, the image to use ([`rumexcrispp/latex-docker`](https:
 }
 ```
 
+Specify your project name, the image to use ([`rumexcrispp/latex-docker`](https://hub.docker.com/r/rumexcrispp/latex-docker)) and the necessary extension.
+
 Open the VSCode command palette with <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd> and run the command `Dev Containers: Rebuild and Reopen in Container`. See following screenshot.
 
 ![screenshot of command palette](doc/images/command_palette.png)
 
 Start editing your latex files. If you use the example [`devcontainer.json`](.devcontainer/devcontainer.json) file, the output PDF will also be compressed.
+
+### Indentation
+
+To enable indentation of latex files, place the example `localSettings.yaml` inside each folder where your `*.tex` files live.
 
 ## Pull the Image Manually
 
