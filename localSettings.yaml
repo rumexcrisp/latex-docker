@@ -1,0 +1,40 @@
+modifyLineBreaks:
+  textWrapOptions:
+    all: 0
+    columns: 100
+    perCodeBlockBasis: 1
+    blocksBeginWith:
+      A-Z: 1
+      a-z: 1
+      0-9: 0
+      other: Ä # regex
+  linebreakAfterBegin: true
+  linebreakAfterBlocks: 1
+  environments:
+    BeginStartsOnOwnLine: 1
+    BodyStartsOnOwnLine: 1
+    EndStartsOnOwnLine: 1
+    EndFinishesWithLineBreak: 1
+    equation*:
+      BeginStartsOnOwnLine: 1
+      BodyStartsOnOwnLine: 1
+      EndStartsOnOwnLine: 1
+      EndFinishesWithLineBreak: 1
+    figure*:
+      BeginStartsOnOwnLine: 1
+      BodyStartsOnOwnLine: 1
+      EndStartsOnOwnLine: 1
+      EndFinishesWithLineBreak: 1
+    table*:
+      BeginStartsOnOwnLine: 1
+      BodyStartsOnOwnLine: 1
+      EndStartsOnOwnLine: 1
+      EndFinishesWithLineBreak: 1
+    tabular*:
+      BeginStartsOnOwnLine: 1
+      BodyStartsOnOwnLine: 1
+      EndStartsOnOwnLine: 1
+      EndFinishesWithLineBreak: 1
+  removeParagraphLineBreaks:
+    all: 1
+    beforeTextWrap: 1
