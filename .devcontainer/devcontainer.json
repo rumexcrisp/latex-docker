@@ -19,7 +19,9 @@
                     "-c",
                     "%DIR%/",
                     "%TMPFILE%",
-                    "-y=defaultIndent: '%INDENT%'"
+                    "-y=defaultIndent: '%INDENT%'",
+                    "-m",
+                    "-l"
                 ],
                 "latex-workshop.latex.recipe.default": "lualatex",
                 "latex-workshop.latex.recipes": [
