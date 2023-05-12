@@ -10,5 +10,4 @@ RUN dnf install -y --setopt=install_weak_deps=False \
   latexmk \
   make \
   pdf2svg \
-  texlive-scheme-full &&
-  dnf clean all
+  texlive-scheme-full && dnf clean all
