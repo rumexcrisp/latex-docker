@@ -19,7 +19,7 @@
                     "-c",
                     "%DIR%/",
                     "%TMPFILE%",
-                    "-y=defaultIndent: '%INDENT%'",
+                    "-y=defaultIndent: '    '",
                     "-m",
                     "-l"
                 ],
