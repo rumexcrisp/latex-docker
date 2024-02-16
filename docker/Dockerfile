@@ -1,4 +1,4 @@
-FROM fedora:38
+FROM fedora:39
 
 LABEL name="rumexcrispp/latex-docker"
 LABEL version="1.0.0"
