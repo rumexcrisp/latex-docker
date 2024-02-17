@@ -6,7 +6,10 @@ LABEL description="LaTeX distribution with support for BibLaTeX and PDFlatex"
 LABEL maintainer="rumexcrispp"
 
 RUN dnf install -y --setopt=install_weak_deps=False \
-  neovim \
+  gnuplot \
+  graphviz \
+  inkscape \
+  java-17-openjdk \
   latexmk \
   make \
   pdf2svg \
