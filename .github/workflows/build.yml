@@ -33,11 +33,33 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v5
         with:
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           context: ./docker
           file: ./docker/Dockerfile
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/latex-docker:latest
+          tags: ${{ env.DOCKERHUB_USERNAME }}/latex:testing
           push: true
-      
+
+      - name: Determine release tag name
+        if: ${{ github.event_name == 'release' }}
+        id: vars
+        run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+
+      - name: Build and push release
+        if: ${{ github.event_name == 'release' }}
+        uses: docker/build-push-action@v5
+        with:
+          context: ./docker
+          file: ./docker/Dockerfile
+          platforms: ${{ env.buildx_platforms }}
+          load: false
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/latex:${{steps.vars.outputs.tag}},
+            ${{ secrets.DOCKERHUB_USERNAME }}/latex:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
       - name: Update Docker Hub description
         if: ${{ github.event_name == 'release' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
         uses: peter-evans/dockerhub-description@v4
