@@ -1,13 +1,15 @@
-FROM fedora:38
+FROM fedora:39
 
 LABEL name="rumexcrispp/latex-docker"
-LABEL version="1.0.0"
+LABEL version="v2"
 LABEL description="LaTeX distribution with support for BibLaTeX and PDFlatex"
 LABEL maintainer="rumexcrispp"
 
 RUN dnf install -y --setopt=install_weak_deps=False \
-  vim \
+  neovim \
   latexmk \
   make \
   pdf2svg \
-  texlive-scheme-full && dnf clean all
+  python3 \
+  texlive-scheme-full \
+  && dnf clean all
