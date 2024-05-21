@@ -1,6 +1,8 @@
 # latex-docker
 
-[![rumexcrispp/latex-docker](https://img.shields.io/badge/Docker%20Hub-rumexcrispp%2Flatex--docker-blue)](https://hub.docker.com/r/rumexcrispp/latex-docker)
+[![ghcr](https://ghcr-badge.egpl.dev/rumexcrisp/latex-docker/latest_tag?label=latest)](https://github.com/rumexcrisp/latex-docker/pkgs/container/latex-docker)
+[![ghcr](https://ghcr-badge.egpl.dev/rumexcrisp/latex-docker/tags)](https://github.com/rumexcrisp/latex-docker/pkgs/container/latex-docker)
+[![image-size](https://ghcr-badge.egpl.dev/rumexcrisp/latex-docker/size)](https://github.com/rumexcrisp/latex-docker/pkgs/container/latex-docker)
 [![Build and publish](https://github.com/rumexcrisp/latex-docker/actions/workflows/build.yml/badge.svg)](https://github.com/rumexcrisp/latex-docker/actions/workflows/build.yml)
 
 A Docker-based LaTeX distribution with support for BibLaTeX and automatic compression.
@@ -29,7 +31,7 @@ This docker is intended to use as a remote container. Create your custom latex p
 }
 ```
 
-Specify your project name, the image to use ([`rumexcrispp/latex-docker`](https://hub.docker.com/r/rumexcrispp/latex-docker)) and the necessary extension.
+Specify your project name, the image to use ([`rumexcrisp/latex-docker`](https://github.com/rumexcrisp/latex-docker/pkgs/container/latex-docker)) and the necessary extension.
 
 Open the VSCode command palette with <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd> and run the command `Dev Containers: Rebuild and Reopen in Container`. See following screenshot.
 
@@ -43,8 +45,6 @@ To enable indentation of latex files, place the example `localSettings.yaml` ins
 
 ## Pull the Image Manually
 
-Check out the [Docker Hub](https://hub.docker.com/r/rumexcrispp/latex-docker) page or pull it directly via:
-
 ```sh
-docker pull rumexcrispp/latex-docker
+docker pull ghcr.io/rumexcrisp/latex-docker:main
 ```
