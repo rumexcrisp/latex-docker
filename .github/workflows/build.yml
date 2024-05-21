@@ -55,12 +55,13 @@ jobs:
           if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
             TAGS="${TAGS},main"
           fi
-          if [[ "${GITHUB_REF}" == refs/heads/release/* ]]; then
+          if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
             TAGS="${TAGS},${VERSION}"
           fi
+          TAGS=$(echo "$TAGS" | tr ',' '\n' | awk '!seen[$0]++' | tr '\n' ',')
+          TAGS=${TAGS%,}
           echo "TAGS=$TAGS" >> $GITHUB_ENV
 
-      
       # https://github.com/docker/metadata-action
       - name: Extract Docker metadata
         id: meta
