@@ -22,7 +22,7 @@ This docker is intended to use as a remote container. Create your custom latex p
 ```json
 {
   "name": "latex-docker",
-  "image" : "rumexcrispp/latex-docker:latest",
+  "image" : "ghcr.io/rumexcrisp/latex-docker:main",
   "customizations": {
       "vscode": {
           "extensions": ["james-yu.latex-workshop"]
