@@ -9,6 +9,7 @@ ARG PLANTUML_VERSION=1.2024.4
 ENV PLANTUML_JAR /usr/share/java/plantuml/plantuml.jar
 
 RUN dnf install -y --setopt=install_weak_deps=False \
+  vim \
   gnuplot \
   bzip2 \
   curl \
