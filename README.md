@@ -46,5 +46,7 @@ To enable indentation of latex files, place the example `localSettings.yaml` ins
 ## Pull the Image Manually
 
 ```sh
-docker pull ghcr.io/rumexcrisp/latex-docker:main
+docker pull ghcr.io/rumexcrisp/latex-docker
+# or a specific version, e.g. v3
+docker pull ghcr.io/rumexcrisp/latex-docker:v3
 ```
