@@ -17,7 +17,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  buildx_platforms: linux/amd64
+  buildx_platforms: linux/amd64, linux/arm64
 
 jobs:
   build-push:
