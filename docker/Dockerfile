@@ -50,4 +50,5 @@ RUN groupadd -g ${USER_GID} ${USERNAME} \
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}
 COPY .zshrc .
+RUN chown ${USERNAME}:${USERNAME} .zshrc
 CMD ["/bin/zsh"]
