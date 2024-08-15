@@ -26,9 +26,12 @@ RUN pacman --noconfirm -Syu \
   noto-fonts \
   pdf2svg \
   python3 \
+  sudo \
   texlive-basic \
   texlive-bin \
   texlive-binextra \
+  texlive-fontsextra \
+  texlive-fontsrecommended \
   texlive-latex \
   texlive-latexextra \
   texlive-latexrecommended \
@@ -44,7 +47,12 @@ RUN mkdir -p "$(dirname ${PLANTUML_JAR})" \
   && curl -SL https://github.com/plantuml/plantuml/releases/download/v${PLANTUML_VERSION}/plantuml-${PLANTUML_VERSION}.jar -o "${PLANTUML_JAR}" \
   && echo "PLANTUML_JAR=${PLANTUML_JAR}" >> /etc/environment
 
-RUN useradd -m -s /bin/zsh ${USERNAME}
+RUN groupadd -g ${USER_GID} ${USERNAME} \
+  && useradd -m -u ${USER_UID} -g ${USER_GID} -s /bin/zsh ${USERNAME} \
+  && passwd -d ${USERNAME} \
+  && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USERNAME} \
+  && chmod 0440 /etc/sudoers.d/${USERNAME}
+
 # RUN chown -R customuser:customuser ${PLANTUML_JAR}
 COPY .zshrc /home/${USERNAME}/
 USER ${USERNAME}
