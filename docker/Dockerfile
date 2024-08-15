@@ -47,7 +47,7 @@ RUN groupadd -g ${USER_GID} ${USERNAME} \
   && chmod 0440 /etc/sudoers.d/${USERNAME}
 
 # RUN chown -R customuser:customuser ${PLANTUML_JAR}
-COPY .zshrc /home/${USERNAME}/
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}
+COPY .zshrc .
 CMD ["/bin/zsh"]
