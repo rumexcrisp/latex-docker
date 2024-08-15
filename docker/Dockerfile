@@ -27,14 +27,7 @@ RUN pacman --noconfirm -Syu \
   pdf2svg \
   python3 \
   sudo \
-  texlive-basic \
-  texlive-bin \
-  texlive-binextra \
-  texlive-fontsextra \
-  texlive-fontsrecommended \
-  texlive-latex \
-  texlive-latexextra \
-  texlive-latexrecommended \
+  texlive \
   zsh \
   zsh-autosuggestions \
   zsh-completions \
