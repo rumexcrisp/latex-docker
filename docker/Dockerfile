@@ -22,14 +22,15 @@ RUN pacman --noconfirm -Syu \
   inkscape \
   jdk17-openjdk \
   make \
-  noto-fonts \
   neovim \
+  noto-fonts \
   pdf2svg \
   python3 \
   texlive-basic \
   texlive-bin \
   texlive-binextra \
   texlive-latex \
+  texlive-latexextra \
   texlive-latexrecommended \
   zsh \
   zsh-autosuggestions \

@@ -22,7 +22,7 @@ This docker is intended to use as a remote container. Create your custom latex p
 ```json
 {
   "name": "latex-docker",
-  "image" : "ghcr.io/rumexcrisp/latex-docker:main",
+  "image" : "ghcr.io/rumexcrisp/latex-docker",
   "customizations": {
       "vscode": {
           "extensions": ["james-yu.latex-workshop"]
@@ -38,6 +38,24 @@ Open the VSCode command palette with <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>P</
 ![screenshot of command palette](doc/images/command_palette.png)
 
 Start editing your latex files. If you use the example [`devcontainer.json`](.devcontainer/devcontainer.json) file, the output PDF will also be compressed.
+
+### Tex packages
+
+This release does contain recommended tex packages which will be sufficient for most use cases. However, if you want to install additional packages found on [CTAN](https://ctan.org/) do as follows:
+
+As taken from [archwiki](https://wiki.archlinux.org/title/TeX_Live):
+
+Find a package collection with
+
+```bash
+tlmgr info <ctan_package_name> | grep collection
+```
+
+The output will be something like `collection: collection-plaingeneric` which means your package is contained in `texlive-plaingeneric`. You then just need to install that package with:
+
+```bash
+pacman -Syu texlive-<plaingeneric>
+```
 
 ### Indentation
 
