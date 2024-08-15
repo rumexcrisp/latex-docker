@@ -20,11 +20,11 @@ RUN dnf install -y --setopt=install_weak_deps=False \
   graphviz \
   inkscape \
   java-17-openjdk \
-  # latexmk \
+  latexmk \
   make \
   pdf2svg \
   python3 \
-  # texlive-scheme-full \
+  texlive-scheme-full \
   vim \
   zsh \
   zsh-autosuggestions \
