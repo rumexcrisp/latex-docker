@@ -23,10 +23,10 @@ RUN dnf install -y --setopt=install_weak_deps=False \
   java-17-openjdk \
   latexmk \
   make \
+  neovim \
   pdf2svg \
   python3 \
   texlive-scheme-full \
-  vim \
   zsh \
   zsh-autosuggestions \
   zsh-syntax-highlighting \
