@@ -21,6 +21,14 @@ jobs:
   build:
     name: Build Docker image
     runs-on: ubuntu-latest
+    # Run if:
+    # - It's a pull request, OR
+    # - It's a tag push, OR
+    # - It's a branch push with no open PR
+    if: >
+      github.event_name == 'pull_request' ||
+      startsWith(github.ref, 'refs/tags/') ||
+      (github.event_name == 'push' && !github.event.pull_request)
     steps:
       - name: Check out the repo
         uses: actions/checkout@v5
