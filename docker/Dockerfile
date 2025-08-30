@@ -15,7 +15,7 @@ ARG USER_GID=${USER_UID}
 RUN dnf install -y --setopt=install_weak_deps=False \
   bzip2 \
   curl \
-  eza \
+  exa \
   git-lfs \
   gnuplot \
   graphviz \

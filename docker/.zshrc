@@ -1,5 +1,5 @@
 typeset -U PATH path
-path=(	"$HOME/bin"
+path=("$HOME/bin"
 	"$HOME/.local/bin"
 	"/bin"
 	"/usr/bin"
@@ -78,11 +78,10 @@ zle -N edit-command-line
 alias vim='nvim'
 # eza
 alias ls='exa --group-directories-first --icons --color-scale age --group'
-alias lt='exa --tree --level=2 --icons' # Show in tree view
-alias l='ls -a'                         # Short, all files
-alias ld='l -D'                         # Short, only directories
-alias ll='ls -lb --git'                # Long, file size prefixes, grid, git status
-alias lll='ls -alb --git'
+alias lt='exa --tree --level=2 --icons'
+alias l='ls -a'
+alias ld='l -D'
+alias ll='ls -alb --git'
 
 HISTSIZE=999999999
 SAVEHIST=999999999
