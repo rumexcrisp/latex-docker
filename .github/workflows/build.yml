@@ -11,8 +11,6 @@ on:
     types:
       - published
       - edited
-  schedule:
-    - cron: '15 1 * * 6'
 
 env:
   REGISTRY: ghcr.io
@@ -20,8 +18,8 @@ env:
   buildx_platforms: linux/amd64
 
 jobs:
-  build-push:
-    name: Build and push Docker image to GHCR
+  build:
+    name: Build Docker image
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -30,6 +28,33 @@ jobs:
         uses: docker/setup-qemu-action@v3
         with:
           platforms: all
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Extract version label from Dockerfile
+        id: extract_version
+        run: |
+          version=$(grep 'LABEL version=' docker/Dockerfile | cut -d'=' -f2 | tr -d ' "')
+          echo "VERSION=$version" >> $GITHUB_ENV
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./docker
+          file: ./docker/Dockerfile
+          platforms: ${{ env.buildx_platforms }}
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  publish:
+    name: Publish Docker image to GHCR
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v5
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       
@@ -46,29 +71,15 @@ jobs:
           version=$(grep 'LABEL version=' docker/Dockerfile | cut -d'=' -f2 | tr -d ' "')
           echo "VERSION=$version" >> $GITHUB_ENV
 
-      - name: Determine Docker tags
-        id: docker_tags
-        run: |
-          TAGS="testing"
-          BRANCH_TAG=$(echo "${GITHUB_REF#refs/heads/}" | tr / -)
-          TAGS="${TAGS},${BRANCH_TAG}"
-          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
-            TAGS="${TAGS},latest"
-          fi
-          if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
-            TAGS="${TAGS},${VERSION}"
-          fi
-          TAGS=$(echo "$TAGS" | tr ',' '\n' | awk '!seen[$0]++' | tr '\n' ',')
-          TAGS=${TAGS%,}
-          echo "TAGS=$TAGS" >> $GITHUB_ENV
-
       # https://github.com/docker/metadata-action
       - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: ${{ env.TAGS }}
+          tags: |
+            type=raw,value=latest
+            type=semver,pattern={{version}}
           labels: |
             org.opencontainers.image.created=${{ steps.meta.outputs.created }}
             org.opencontainers.image.url=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
@@ -78,13 +89,12 @@ jobs:
             org.opencontainers.image.licenses=MIT
       
       - name: Build and push Docker image
-        id: build-and-push
         uses: docker/build-push-action@v6
         with:
           context: ./docker
           file: ./docker/Dockerfile
           platforms: ${{ env.buildx_platforms }}
-          push: ${{ github.event_name != 'pull_request' }}
+          push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
