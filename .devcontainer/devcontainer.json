@@ -1,6 +1,7 @@
 {
     "name": "latex-docker",
-    "image": "rumexcrispp/latex-docker:latest",
+    "remoteUser": "latex",
+    "image": "ghcr.io/rumexcrisp/latex-docker:latest",
     "customizations": {
         "vscode": {
             "extensions": [
@@ -81,7 +82,6 @@
                         "name": "pdflatex",
                         "command": "pdflatex",
                         "args": [
-                            "--shell-escape",
                             "-synctex=1",
                             "-interaction=nonstopmode",
                             "-file-line-error",

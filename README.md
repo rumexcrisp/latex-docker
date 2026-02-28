@@ -22,7 +22,8 @@ This docker is intended to use as a remote container. Create your custom latex p
 ```json
 {
   "name": "latex-docker",
-  "image" : "ghcr.io/rumexcrisp/latex-docker:main",
+  "image" : "ghcr.io/rumexcrisp/latex-docker:latest",
+  "remoteUser": "latex",
   "customizations": {
       "vscode": {
           "extensions": ["james-yu.latex-workshop"]
@@ -43,10 +44,33 @@ Start editing your latex files. If you use the example [`devcontainer.json`](.de
 
 To enable indentation of latex files, place the example `localSettings.yaml` inside each folder where your `*.tex` files live.
 
-## Pull the Image Manually
+## Pull or Build with Podman
 
 ```sh
-docker pull ghcr.io/rumexcrisp/latex-docker
-# or a specific version, e.g. v3
-docker pull ghcr.io/rumexcrisp/latex-docker:v3
+podman pull ghcr.io/rumexcrisp/latex-docker:latest
+# or a specific version, e.g. v4
+podman pull ghcr.io/rumexcrisp/latex-docker:v4
+
+# build locally from this repository
+podman build -f docker/Dockerfile -t latex-docker:local .
 ```
+
+If you use VS Code Dev Containers with Podman, set `dev.containers.dockerPath` to `podman` in your VS Code settings.
+
+### VS Code + Podman on macOS (Apple Silicon)
+
+```sh
+podman machine init
+podman machine start
+podman system connection list
+```
+
+In VS Code settings, set:
+
+```json
+{
+  "dev.containers.dockerPath": "podman"
+}
+```
+
+If VS Code cannot reach Podman, set `DOCKER_HOST` to your active Podman socket from `podman system connection list`.
