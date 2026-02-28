@@ -1,4 +1,4 @@
-FROM fedora:41
+FROM fedora:42
 
 LABEL name="rumexcrisp/latex-docker"
 LABEL version="v4"
@@ -13,16 +13,12 @@ ARG USER_UID=1000
 ARG USER_GID=${USER_UID}
 
 RUN dnf install -y --setopt=install_weak_deps=False \
-  bzip2 \
-  curl \
-  exa \
   git-lfs \
   gnuplot \
   graphviz \
   inkscape \
-  java-17-openjdk \
+  java-21-openjdk \
   latexmk \
-  make \
   neovim \
   pdf2svg \
   python3 \
@@ -39,7 +35,7 @@ RUN mkdir -p "$(dirname ${PLANTUML_JAR})" \
 RUN groupadd --gid ${USER_GID} ${USERNAME} \
   && useradd --uid ${USER_UID} --gid ${USER_GID} -m ${USERNAME} -s /usr/bin/zsh \
   && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-COPY .zshrc /home/${USERNAME}/.zshrc
+COPY docker/.zshrc /home/${USERNAME}/.zshrc
 RUN chown ${USERNAME}:${USERNAME} /home/${USERNAME}/.zshrc
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}
