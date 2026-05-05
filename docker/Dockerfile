@@ -17,7 +17,7 @@ RUN dnf install -y --setopt=install_weak_deps=False \
   gnuplot \
   graphviz \
   inkscape \
-  java-21-openjdk \
+  java-latest-openjdk \
   latexmk \
   neovim \
   pdf2svg \
