@@ -1,7 +1,7 @@
 FROM fedora:44
 
 LABEL name="rumexcrisp/latex-docker"
-LABEL version="v4"
+LABEL version="v7"
 LABEL description="LaTeX distribution with support for BibLaTeX and PDFlatex"
 LABEL maintainer="rumexcrisp"
 
