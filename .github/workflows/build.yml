@@ -50,7 +50,7 @@ jobs:
           echo "VERSION=$version" >> $GITHUB_ENV
 
       - name: Build Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./docker/Dockerfile
@@ -101,7 +101,7 @@ jobs:
             org.opencontainers.image.licenses=MIT
       
       - name: Build and push Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./docker/Dockerfile
