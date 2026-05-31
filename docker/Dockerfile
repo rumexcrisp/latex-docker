@@ -1,7 +1,7 @@
-FROM fedora:42
+FROM fedora:44
 
 LABEL name="rumexcrisp/latex-docker"
-LABEL version="v4"
+LABEL version="v7"
 LABEL description="LaTeX distribution with support for BibLaTeX and PDFlatex"
 LABEL maintainer="rumexcrisp"
 
@@ -17,7 +17,7 @@ RUN dnf install -y --setopt=install_weak_deps=False \
   gnuplot \
   graphviz \
   inkscape \
-  java-21-openjdk \
+  java-latest-openjdk \
   latexmk \
   neovim \
   pdf2svg \
